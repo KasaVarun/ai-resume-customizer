@@ -59,15 +59,12 @@ def main():
     st.markdown('<div class="main-header">🚀 AI-Powered Resume Customizer</div>', unsafe_allow_html=True)
     st.markdown('<div class="sub-header">Transform your resume to match any job description with AI</div>', unsafe_allow_html=True)
     
-    # Sidebar for API key
     with st.sidebar:
         st.header("⚙️ Configuration")
-        api_key = st.text_input(
-            "Anthropic API Key",
-            type="password",
-            value=os.getenv("ANTHROPIC_API_KEY", ""),
-            help="Get your API key from https://console.anthropic.com/"
-        )
+        api_key = os.getenv("ANTHROPIC_API_KEY", "")
+        
+        if not api_key:
+            st.error("⚠️ API key not configured. Please contact the administrator.")
         
         st.markdown("---")
         st.markdown("### 📋 How It Works")
@@ -206,4 +203,5 @@ def main():
     """, unsafe_allow_html=True)
 
 if __name__ == "__main__":
+
     main()
